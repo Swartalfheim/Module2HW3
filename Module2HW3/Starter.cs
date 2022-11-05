@@ -1,27 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Module2HW3
+﻿namespace Module2HW3
 {
     public class Starter
     {
         public void Start()
         {
-            Recipe recipe = new Recipe();
-            recipe.GreekSaladRecipe();
+            Calories calories = new Calories();
             PrintInfo printInfo = new PrintInfo();
             printInfo.TableInformation();
-            printInfo.Info();
-            Console.WriteLine("/////////////////////////////////////////////////////");
-            CountCalories countCalories = new CountCalories();
-            countCalories.Calories();
-            Console.WriteLine("/////////////////////////////////////////////////////");
-            Search.SearchByParams("search");
-            Console.ReadKey();
-            Console.Clear();
+            printInfo.PrintTable();
+            printInfo.PrintMakeSalad();
+            calories.RezCalories();
+            printInfo.PrintFind();
             Sort sort = new Sort();
             sort.SortByParameter();
         }

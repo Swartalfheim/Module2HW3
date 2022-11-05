@@ -1,34 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Module2HW3
+﻿namespace Module2HW3
 {
-    internal class PrintInfo
+    public class PrintInfo : MakeSalad
     {
-        private AllInformation _printInfo = new AllInformation();
-        public void Info()
+        private VegetablesTable _print;
+        private Calories _calories;
+        public void PrintTable()
         {
-            foreach (IVegetables v in _printInfo.All())
+            _print = new VegetablesTable();
+            int height = _print.Table().GetLength(0);
+            int width = _print.Table().GetLength(1);
+            for (int i = 0; i < height; i++)
             {
-                for (int i = 0; i < v.Ingredient().Length; i++)
+                for (int j = 0; j < width; j++)
                 {
-                    Console.Write(v.Ingredient()[i] + ";  ");
+                    Console.Write(_print.Table()[i, j] + "; ");
                 }
 
                 Console.WriteLine();
             }
+        }
 
-            Console.WriteLine();
+        public void PrintMakeSalad()
+        {
+            string[,] make = new string[6, 4];
+            int height = _print.Table().GetLength(0);
+            int width = _print.Table().GetLength(1);
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    make[i, j] = _print.Table()[i, j];
+                }
+            }
+
+            Make(make);
         }
 
         public void TableInformation()
         {
-            Console.WriteLine("Parameters in the table are arranged in the same order as in the description.");
-            Console.WriteLine("number;  title;  the weight;  kilocalories per 100 grams:");
+            Console.WriteLine(" The table below contains information about products for making salad in the appropriate sequence:\n " +
+                "product number, product name, weight, number of calories (100 grams)\n");
+        }
+
+        public void PrintFind()
+        {
+            Find.FindByParameter(_print.Table());
         }
     }
 }

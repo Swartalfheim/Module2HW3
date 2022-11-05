@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Module2HW3
 {
-    internal interface IVegetables
+    internal interface IMake
     {
-        public string[] Ingredient();
+        public string[,] Make(string[,] make);
     }
 }

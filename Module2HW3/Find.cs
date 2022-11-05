@@ -1,28 +1,29 @@
-﻿using System.Net.NetworkInformation;
+﻿using System.Drawing;
 
 namespace Module2HW3
 {
-    public static class Search
+    public static class Find
     {
-        public static void SearchByParams(this string str)
+        public static void FindByParameter(this string[,] mass)
         {
-            AllInformation allInformation = new AllInformation();
             Console.WriteLine("\n Select by what parameter you want to search for ingredients:\n" +
                " 1) weight, 2) name (Capitalized), 3) kilocalories;\n" +
                " to select an item, you must select the number corresponding to the parameter");
             string search = Console.ReadLine();
+            int height = mass.GetLength(0);
+            int width = mass.GetLength(1);
             switch (search)
             {
                 case "1":
                     Console.WriteLine("Enter weight");
                     string weight = Console.ReadLine();
-                    foreach (IVegetables v in allInformation.All())
+                    for (int i = 0; i < height; i++)
                     {
-                        for (int i = 0; i < v.Ingredient().Length; i++)
+                        for (int j = 0; j < width; j++)
                         {
-                            if (v.Ingredient()[2] == weight)
+                            if (mass[i, 2] == weight)
                             {
-                                Console.Write(v.Ingredient()[i] + ";  ");
+                                Console.Write(mass[i, j] + ";  ");
                             }
                         }
 
@@ -33,13 +34,13 @@ namespace Module2HW3
                 case "2":
                     Console.WriteLine("Enter name");
                     string name = Console.ReadLine();
-                    foreach (IVegetables v in allInformation.All())
+                    for (int i = 0; i < height; i++)
                     {
-                        for (int i = 0; i < v.Ingredient().Length; i++)
+                        for (int j = 0; j < width; j++)
                         {
-                            if (v.Ingredient()[1] == name)
+                            if (mass[i, 1] == name)
                             {
-                                Console.Write(v.Ingredient()[i] + ";  ");
+                                Console.Write(mass[i, j] + ";  ");
                             }
                         }
 
@@ -49,14 +50,14 @@ namespace Module2HW3
                     break;
                 case "3":
                     Console.WriteLine("Enter kilocalories");
-                    string kilocalories = Console.ReadLine();
-                    foreach (IVegetables v in allInformation.All())
+                    string calories = Console.ReadLine();
+                    for (int i = 0; i < height; i++)
                     {
-                        for (int i = 0; i < v.Ingredient().Length; i++)
+                        for (int j = 0; j < width; j++)
                         {
-                            if (v.Ingredient()[3] == kilocalories)
+                            if (mass[i, 3] == calories)
                             {
-                                Console.Write(v.Ingredient()[i] + ";  ");
+                                Console.Write(mass[i, j] + ";  ");
                             }
                         }
 
@@ -65,8 +66,6 @@ namespace Module2HW3
 
                     break;
             }
-
-            Console.WriteLine("press any key to continue");
         }
     }
 }
